@@ -388,8 +388,8 @@ def main():
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    #main()
-    print("two.py is being run directly")
+    print("NixieClock is being run directly")
+    main()
 else:
-    print("two.py is being imported into another module")
+    print("NixieClock is being imported into another module")
 
