@@ -309,12 +309,13 @@ def main():
         myDisplayThread.start()
         
         #start the web api (in the main thread)
+        print("MAIN thread:")
         app = Flask(__name__)
 
         @app.route('/')
         def hello_world():
             print ("Returning version info")
-            return "Python Nixie Clock, version 190422.1"
+            return "Python Nixie Clock, version 200221.1"
         
         @app.route('/dutycycle/<string:colour>/<int:dutycycle>', methods=['PUT'])
         def putdutycycle(colour,dutycycle):

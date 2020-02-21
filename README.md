@@ -21,10 +21,10 @@ touch ssh
 10. Update your install: sudo apt-get update, sudo apt-get upgrade.
 11. Install git: sudo apt-get install git
 12. Clone this repo to your Pi: git clone https://github.com/jonwhitear/NixieClock.git
-sudo apt-get install python-rpi.gpio python3-rpi.gpio python-flask
+sudo apt-get install python-rpi.gpio python3-rpi.gpio python3-flask
 113. Update /etc/rc.local to add your command before the exit line
 ````
-python /home/jon/NixieClock/clock_queue.py &
+python3 /home/jon/NixieClock/clock_queue.py &
 exit 0
 ````
 
