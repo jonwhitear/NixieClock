@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Nixie Clock
-#
+#  
 #
 #
 
@@ -12,7 +12,7 @@ import sys
 import subprocess
 import random
 import threading
-import queue
+import Queue as queue
 from flask import Flask, jsonify
 
 lock = threading.Lock()
