@@ -12,7 +12,12 @@ import sys
 import subprocess
 import random
 import threading
-import Queue as queue
+# Accomodate both python 2 and 3 queue modules.
+try:
+   import queue
+except ImportError:
+   import Queue as queue
+
 from flask import Flask, jsonify
 
 lock = threading.Lock()
