@@ -336,7 +336,7 @@ def main():
                         print ("Command queue full... failing")
                         abort(404)
                 else: #invalid dutcycle
-                    abort(404, message="Invalid DUty Cycle")
+                    abort(400, "Invalid Duty Cycle")
             else:
                 abort(404, message="Invalid Colour")
 
