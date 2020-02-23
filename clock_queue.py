@@ -12,6 +12,7 @@ import sys
 import subprocess
 import random
 import threading
+
 # Accomodate both python 2 and 3 queue modules.
 try:
    import queue
@@ -320,21 +321,24 @@ def main():
         @app.route('/dutycycle/<string:colour>/<int:dutycycle>', methods=['PUT'])
         def putdutycycle(colour,dutycycle):
             if (colour == 'red') or (colour == 'blue') or (colour == 'green') or (colour == 'all'):
-                print ("Acquiring lock")
-                lock.acquire()
-                if not CommandQueue.full():
-                    print ("Adding colour, duty cycle to command queue")
-                    CommandQueue.put(('dutycycle',colour,dutycycle))
-                    print ("Releasing lock")
-                    lock.release()
-                    return jsonify({colour: dutycycle})
-                else:
-                    print ("Releasing lock")
-                    lock.release()
-                    print ("Command queue full... failing")
-                    abort(404)
+                if (dutycycle >= 0) and (dutycycle <= 100):
+                    print ("Acquiring lock")
+                    lock.acquire()
+                    if not CommandQueue.full():
+                        print ("Adding colour, duty cycle to command queue")
+                        CommandQueue.put(('dutycycle',colour,dutycycle))
+                        print ("Releasing lock")
+                        lock.release()
+                        return jsonify({colour: dutycycle})
+                    else:
+                        print ("Releasing lock")
+                        lock.release()
+                        print ("Command queue full... failing")
+                        abort(404)
+                else: #invalid dutcycle
+                    abort(404, message="Invalid DUty Cycle")
             else:
-                abort(404)
+                abort(404, message="Invalid Colour")
 
         @app.route('/delay/<string:type>/<float:delay>', methods=['PUT'])
         def putdelay(type, delay):
