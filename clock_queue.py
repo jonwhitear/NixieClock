@@ -19,7 +19,7 @@ try:
 except ImportError:
    import Queue as queue
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 
 lock = threading.Lock()
 CommandQueue = queue.Queue(10)
