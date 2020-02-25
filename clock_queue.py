@@ -360,7 +360,7 @@ def main():
                     print ("Command queue full... failing")
                     abort(404, "Command Queue Full")
             else:
-                abort(404, "Invalid Type"
+                abort(404, "Invalid Type")
 
         @app.route('/mode/<string:mode>', methods=['PUT'])
         def putmode(mode):
