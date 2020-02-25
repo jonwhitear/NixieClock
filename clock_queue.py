@@ -181,14 +181,14 @@ class varThread (threading.Thread):
                 if type == 'mode':
                     print ("Setting mode to ", key)
                     if key == 'lowpower':
-                        mode = value
+                        mode = key
                         red_dutycycle = 0
                         blue_dutycycle = 0
                         green_dutycycle = 0
                         off_delay = 0.005
                         on_delay = 0.005
                     elif key == 'normal':
-                        mode = value
+                        mode = key
                         off_delay = 0
                         on_delay = 0.01
 
