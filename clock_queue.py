@@ -214,6 +214,9 @@ class varThread (threading.Thread):
                         on_delay = value
                     else: #off
                         off_delay = value
+
+                else: # something strage
+                    print ("Unrecognised command")
  
             lock.release()
             time.sleep(0.1)
@@ -317,7 +320,7 @@ def main():
         def hello_world():
             print ("Returning version info")
             return "Python Nixie Clock, version 200221.1"
-        
+
         @app.route('/dutycycle/<string:colour>/<int:dutycycle>', methods=['PUT'])
         def putdutycycle(colour,dutycycle):
             if (colour == 'red') or (colour == 'blue') or (colour == 'green') or (colour == 'all'):
@@ -338,7 +341,7 @@ def main():
                 else: #invalid dutcycle
                     abort(400, "Invalid Duty Cycle")
             else:
-                abort(404, message="Invalid Colour")
+                abort(404, "Invalid Colour")
 
         @app.route('/delay/<string:type>/<float:delay>', methods=['PUT'])
         def putdelay(type, delay):
@@ -355,9 +358,9 @@ def main():
                     print ("Releasing lock")
                     lock.release()
                     print ("Command queue full... failing")
-                    abort(404)
+                    abort(404, "Command Queue Full")
             else:
-                abort(404)
+                abort(404, "Invalid Type"
 
         @app.route('/mode/<string:mode>', methods=['PUT'])
         def putmode(mode):
